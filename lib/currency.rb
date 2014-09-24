@@ -7,6 +7,8 @@
 # Should raise a DifferentCurrencyCodeError when you try to add or subtract two Currency objects with different currency codes.
 # Should be able to be multiplied by a Fixnum or Float and return a Currency object
 
+class DifferentCurrencyCodeError < ArgumentError
+end
 
 class Currency
   include Comparable
@@ -32,5 +34,24 @@ class Currency
     end
   end
 
+  def +(c)
+    if self.currency_code != c.currency_code
+      raise DifferentCurrencyCodeError
+    else
+      return Currency.new((self.amount+c.amount), self.currency_code)
+    end
+  end
+
+  def to_f
+    return @amount.to_f
+  end
+
+  def to_i
+    return @amount.to_i
+  end
+
+  def to_s
+    return @amount.to_s + @currency_code
+  end
 
 end
