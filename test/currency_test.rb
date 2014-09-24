@@ -4,7 +4,7 @@
 # ✔ Should equal another Currency object with the same amount and currency code
 # ✔ Should be able to be added to another Currency object with the same currency code
 # ✔ Should be able to be subtracted by another Currency object with the same currency code
-# Should raise a DifferentCurrencyCodeError when you try to add or subtract two Currency objects with different currency codes.
+# ✔ Should raise a DifferentCurrencyCodeError when you try to add or subtract two Currency objects with different currency codes.
 # Should be able to be multiplied by a Fixnum or Float and return a Currency object
 
 require "minitest/autorun"
@@ -41,5 +41,12 @@ class CurrencyTest < MiniTest::Unit::TestCase
     c1 = Currency.new(1, "USD")
     c2 = Currency.new(2, "EUR")
     assert_raises(DifferentCurrencyCodeError) do c2 - c1 end
+  end
+
+  def test_should_be_able_to_be_multiplied_by_a_Fixnum_or_Float_and_return_a_Currency_object
+    c = Currency.new(2, "EUR")
+    f = 1.1
+    i = 3.0
+    assert ((c * f).class == Currency.new(1,"USD").class && (c * i).class == Currency.new(1,"USD").class)
   end
 end
