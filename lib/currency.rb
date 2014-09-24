@@ -50,6 +50,10 @@ class Currency
     end
   end
 
+  def *(n)
+    return Currency.new((self.amount*n), self.currency_code)
+  end
+
   def to_f
     return @amount.to_f
   end
