@@ -9,7 +9,11 @@
 
 
 class Currency
-  def run
-    fail "You need to add some functionality here before you can use this."
+  attr_accessor :amount
+  attr_accessor :currency_code
+  
+  def initialize(amt = 1, cur_code = "USD")
+    @amount = amt
+    @currency_code = cur_code
   end
 end

@@ -9,10 +9,11 @@
 
 require "minitest/autorun"
 require "currency_converter"
+require "currency"
 
 class CurrencyTest < MiniTest::Unit::TestCase
   def test_should_be_created_with_an_amount_and_a_currency_code
-    cur = Currency.new(amt, cur_code)
-    assert false, (cur.amount && cur.currency_code)
+    cur = Currency.new(2, "USD")
+    assert true, (cur.amount && cur.currency_code)
   end
 end
