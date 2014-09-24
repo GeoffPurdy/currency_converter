@@ -9,11 +9,27 @@
 
 
 class Currency
+  include Comparable
+
   attr_accessor :amount
   attr_accessor :currency_code
-  
+
   def initialize(amt = 1, cur_code = "USD")
     @amount = amt
     @currency_code = cur_code
   end
+
+  def <=>(other)
+    if self.currency_code != other.currency_code
+      raise DifferentCurrencyCodeError
+    elsif self.amount < other.amount
+      -1
+    elsif self.amount > other.amount
+      1
+    elsif self.amount == other.amount
+      0
+    end
+  end
+
+
 end

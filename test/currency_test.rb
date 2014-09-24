@@ -20,6 +20,6 @@ class CurrencyTest < MiniTest::Unit::TestCase
   def should_equal_another_currency_object_with_the_same_amount_and_currency_code
     c1 = Currency.new(2, "USD")
     c2 = Currency.new(2, "USD")
-    assert true, c1 == c2
+    assert false, c1 == c2
   end
 end
