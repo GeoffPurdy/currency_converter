@@ -42,6 +42,14 @@ class Currency
     end
   end
 
+  def -(c)
+    if self.currency_code != c.currency_code
+      raise DifferentCurrencyCodeError
+    else
+      return Currency.new((self.amount-c.amount), self.currency_code)
+    end
+  end
+
   def to_f
     return @amount.to_f
   end
