@@ -13,9 +13,12 @@ class CurrencyConverter
     @currencies = hash
   end
 
-  def convert(currency, ccode)
-    if(currency.currency_code == ccode)
-      return Currency.new(currency.amount, ccode)
+  def convert(currency, new_code)
+    if(currency.currency_code == new_code)
+      return Currency.new(currency.amount, new_code)
+    elsif @currencies[currency.currency_code] && @currencies[new_code] # both in hash
+      return Currency.new(currency.amount * @currencies[new_code],new_code)
+    else
     end
   end
 end
