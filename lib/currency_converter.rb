@@ -8,7 +8,14 @@
 # Should raise an UnknownCurrencyCodeError when you try to convert from or to a currency code it doesn't know about.
 
 class CurrencyConverter
-  def run
-    fail "You need to add some functionality here before you can use this."
+  attr_reader :currencies
+  def initialize(hash)
+    @currencies = hash
+  end
+
+  def convert(currency, ccode)
+    if(currency.currency_code == ccode)
+      return Currency.new(currency.amount, ccode)
+    end
   end
 end

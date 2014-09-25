@@ -12,7 +12,14 @@ require "currency_converter"
 
 
 class CurrencyConverterTest < MiniTest::Unit::TestCase
-#  def test_first_test
-#    assert false, false # add tests here
-#  end
+  def test_should_be_created_with_a_Hash_of_currency_codes_to_conversion_rates
+    assert CurrencyConverter.new({USD: 1.0, EUR: 0.74}).currencies.class == {}.class
+  end
+
+  def test_should_be_able_to_take_a_Currency_object_and_a_requested_currency_code_that_is_the_same_currency_code_as_the_Currency_objects_and_return_a_Currency_object_equal_to_the_one_passed_in
+    cc = CurrencyConverter.new({USD: 1.0, EUR: 0.74})
+    clone = cc.convert(Currency.new(2,"EUR"), "EUR")
+    assert clone == Currency.new(2,"EUR")
+  end
+
 end
